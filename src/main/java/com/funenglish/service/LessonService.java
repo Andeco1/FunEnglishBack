@@ -11,34 +11,46 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class LessonService {
-    private final LessonRepository lessonRepository;
+    private final LessonRepository repo;
 
     @Transactional(readOnly = true)
-    public List<Lesson> getAllLessons() {
-        return lessonRepository.findAll();
+    public List<Lesson> getAll() {
+        return repo.findAll();
     }
 
     @Transactional(readOnly = true)
-    public List<Lesson> getLessonsByLevel(String level) {
-        return lessonRepository.findByLevelOrderByOrderNumberAsc(level);
+    public Lesson getById(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found: " + id));
+    }
+
+    @Transactional(readOnly = true)
+    public List<Lesson> getByLevel(String level) {
+        return repo.findByLevel(level);
     }
 
     @Transactional
-    public Lesson createLesson(Lesson lesson) {
-        return lessonRepository.save(lesson);
+    public Lesson create(Lesson lesson) {
+        return repo.save(lesson);
     }
 
     @Transactional
-    public Lesson updateLesson(Long id, Lesson lesson) {
-        if (!lessonRepository.existsById(id)) {
-            throw new RuntimeException("Lesson not found with id: " + id);
-        }
-        lesson.setId(id);
-        return lessonRepository.save(lesson);
+    public List<Lesson> createAll(List<Lesson> lessons) {
+        return repo.saveAll(lessons);
     }
 
     @Transactional
-    public void deleteLesson(Long id) {
-        lessonRepository.deleteById(id);
+    public Lesson update(Long id, Lesson updated) {
+        Lesson existing = repo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Lesson not found: " + id));
+        existing.setTitle(updated.getTitle());
+        existing.setContent(updated.getContent());
+        existing.setLevel(updated.getLevel());
+        return repo.save(existing);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        repo.deleteById(id);
     }
 } 

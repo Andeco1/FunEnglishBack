@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "lessons")
-public class Lesson {
+@Table(name = "books")
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,8 +14,11 @@ public class Lesson {
     @Column(nullable = false)
     private String title;
 
+    @Column(nullable = false)
+    private String author;
+
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
+    private String text;
 
     @Column(nullable = false)
     private String level;
