@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -46,4 +48,16 @@ public class FunEnglishServerApplication {
 		em.setJpaProperties(properties);
 		return em;
 	}
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http
+				.csrf().disable()
+				.authorizeHttpRequests()
+				.anyRequest().permitAll()
+				.and()
+				.headers().frameOptions().disable();
+		return http.build();
+	}
+
+
 }
