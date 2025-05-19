@@ -1,17 +1,21 @@
 package com.example.FunEnglishServer.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import lombok.Data;
+import jakarta.persistence.*;
 
-@Data
 @Entity
 public class UserProgress {
-    @Column(nullable = false)
-    private Long user_id;
+    @EmbeddedId
+    private UserProgressId recordId;
 
-    @Column(nullable = false)
-    private Long test_id;
+    @ManyToOne
+    @MapsId("user_id")
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @MapsId("test_id")
+    @JoinColumn(name = "test_id")
+    private Test test;
 
     @Column
     private Long score;
