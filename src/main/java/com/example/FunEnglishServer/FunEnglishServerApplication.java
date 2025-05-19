@@ -34,7 +34,7 @@ public class FunEnglishServerApplication {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
-		em.setPackagesToScan("com.funenglishserver.model");
+		em.setPackagesToScan("com.example.funenglishserver.model");
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
@@ -46,4 +46,6 @@ public class FunEnglishServerApplication {
 		em.setJpaProperties(properties);
 		return em;
 	}
+
+
 }
