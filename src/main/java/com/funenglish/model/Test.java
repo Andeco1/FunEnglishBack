@@ -22,4 +22,7 @@ public class Test {
 
     @Column(name = "questions_count", nullable = false)
     private int questionsCount;
+
+    @Column(name = "passing_score", nullable = false)
+    private float passingScore;
 } 
