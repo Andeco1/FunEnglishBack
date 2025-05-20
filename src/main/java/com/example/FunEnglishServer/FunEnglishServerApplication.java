@@ -8,6 +8,9 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
@@ -48,16 +51,19 @@ public class FunEnglishServerApplication {
 		em.setJpaProperties(properties);
 		return em;
 	}
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-				.csrf().disable()
-				.authorizeHttpRequests()
-				.anyRequest().permitAll()
-				.and()
-				.headers().frameOptions().disable();
-		return http.build();
-	}
+//	@Bean
+//	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//		http
+//				.csrf(csrf -> csrf.disable())
+//				.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//				.authorizeHttpRequests(auth -> auth
+//						.requestMatchers("/api/users/register","/api/sers/login", "/api/public/**").permitAll()
+//						.anyRequest().authenticated()
+//				)
+//				.httpBasic();
+//		return http.build();
+//	}
+
 
 
 }

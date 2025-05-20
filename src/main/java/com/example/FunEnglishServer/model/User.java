@@ -11,13 +11,25 @@ public class User {
     @Column(nullable = false)
     private String login;
     @Column(nullable = false)
-    private String pasword_hash;
+    private String password;
 
     public String getPassword() {
-        return pasword_hash;
+        return password;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public User() {
+    }
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 }
