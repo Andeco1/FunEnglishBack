@@ -1,44 +1,35 @@
 package com.example.FunEnglishServer.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import java.util.List;
 
-@Data
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
-
-    @Column(nullable = false, unique = true)
+    private Long id;
+    @Column(nullable = false)
     private String login;
-
-    @Column(name = "password_hash", nullable = false)
-    private String passwordHash;
-
-    @OneToMany(mappedBy = "user")
-    private List<UserProgress> progress;
+    @Column(nullable = false)
+    private String password;
 
     public String getPassword() {
-        return passwordHash;
+        return password;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public Long getId() {
-        return userId;
-    }
-
     public User() {
     }
 
-    public User(String login, String passwordHash) {
+    public User(String login, String password) {
         this.login = login;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 }
