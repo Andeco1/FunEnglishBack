@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a952b11f-6299-4621-8858-b0dbeddfe6fe" name="Changes" comment="jj">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/config/MyUserDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/config/MyUserDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/FunEnglishServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/FunEnglishServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/UserService.java" afterDir="false" />
-    </list>
+    <list default="true" id="a952b11f-6299-4621-8858-b0dbeddfe6fe" name="Changes" comment="jj" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
