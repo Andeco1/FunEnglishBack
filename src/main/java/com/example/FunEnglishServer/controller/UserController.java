@@ -17,6 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/users")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
     private final UserService service;
 
@@ -38,13 +39,43 @@ public class UserController {
         return ResponseEntity.ok(service.login(authLogin, authPassword));
     }
 
-    @PostMapping(value = "/register", consumes = "application/x-www-form-urlencoded", produces = "application/json")
-    public ResponseEntity<Map<String, Object>> register(@RequestHeader("Authorization") String authorization) {
-        String[] credentials = extractCredentialsFromHeader(authorization);
-        String authLogin = credentials[0];
-        String authPassword = credentials[1];
-        return ResponseEntity.ok(service.register(authLogin, authPassword));
+    @PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Map<String, Object>> register(@RequestBody Map<String, String> credentials) {
+        if (!credentials.containsKey("login") || !credentials.containsKey("password")) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Login and password are required",
+                "status", "error"
+            ));
+        }
+
+        String login = credentials.get("login");
+        String password = credentials.get("password");
+
+        if (login == null || login.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Login cannot be empty",
+                "status", "error"
+            ));
+        }
+
+        if (password == null || password.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Password cannot be empty",
+                "status", "error"
+            ));
+        }
+
+        try {
+            return ResponseEntity.ok(service.register(login, password));
+        } catch (Exception e) {
+            log.error("Registration failed for user: {}", login, e);
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", e.getMessage(),
+                "status", "error"
+            ));
+        }
     }
+
     private String[] extractCredentialsFromHeader(String authorizationHeader) {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Basic ")) {
             throw new RuntimeException("Отсутствует или некорректный заголовок Authorization");
@@ -56,5 +87,4 @@ public class UserController {
 
         return decoded.split(":", 2);
     }
-
 }

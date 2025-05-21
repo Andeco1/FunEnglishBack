@@ -1,29 +1,22 @@
 package com.example.FunEnglishServer.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import java.time.ZonedDateTime;
 
-@Data
 @Entity
-@Table(name = "users_progress")
 public class UserProgress {
     @EmbeddedId
-    private UserProgressId id;
+    private UserProgressId recordId;
 
     @ManyToOne
-    @MapsId("userId")
-    @JoinColumn(name = "user_id", nullable = false)
+    @MapsId("user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @MapsId("testId")
-    @JoinColumn(name = "test_id", nullable = false)
+    @MapsId("test_id")
+    @JoinColumn(name = "test_id")
     private Test test;
 
     @Column
     private Long score;
-
-    @Column(name = "passed_at")
-    private ZonedDateTime passedAt;
 }
