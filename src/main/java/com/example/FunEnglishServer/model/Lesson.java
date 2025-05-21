@@ -9,7 +9,8 @@ import lombok.Data;
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long lesson_id;
+    @Column(name = "lesson_id")
+    private Long lessonId;
 
     @Column(nullable = false)
     private String title;
@@ -17,6 +18,7 @@ public class Lesson {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private String level;
+    @ManyToOne
+    @JoinColumn(name = "level_id", nullable = false)
+    private Level level;
 }

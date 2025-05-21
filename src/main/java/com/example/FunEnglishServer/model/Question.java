@@ -7,23 +7,23 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "question")
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long question_id;
+    @Column(name = "question_id")
+    private Long questionId;
 
-    @Column(nullable = false)
-    private Long test_id;
+    @ManyToOne
+    @JoinColumn(name = "test_id", nullable = false)
+    private Test test;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String question;
-
-    @Column(nullable = false)
-    private String correct_answer;
+    @Column(name = "question_text", columnDefinition = "TEXT", nullable = false)
+    private String questionText;
 
     @Column(nullable = false)
     private Long points;
 
-    @Column(nullable = false)
-    private List<String> options;
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuestionOption> options;
 }

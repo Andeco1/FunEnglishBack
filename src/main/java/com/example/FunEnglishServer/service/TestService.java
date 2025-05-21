@@ -22,7 +22,5 @@ public class TestService {
         return repository.findAll();
     }
 
-    @Transactional(readOnly = true)
-    public List<Test> getAllByUserId(Long user_id){return repository.findAllByUserId(user_id);}
 
 }

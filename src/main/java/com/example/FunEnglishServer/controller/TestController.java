@@ -23,8 +23,4 @@ public class TestController {
         return ResponseEntity.ok(service.getAll());
     }
 
-    @GetMapping("/{user_id}")
-    public ResponseEntity<List<Test>> getAllByUserId(@PathVariable Long user_id){
-        return ResponseEntity.ok(service.getAllByUserId(user_id));
-    }
 }
