@@ -19,4 +19,7 @@ public class Test {
 
     @Column(nullable = false)
     private Long count;
+
+    @Column(name = "user_id")
+    private Long userId;
 }
