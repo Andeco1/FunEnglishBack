@@ -28,9 +28,12 @@ public class TestService {
     }
     @Transactional(readOnly = true)
     public List<Test> getByLevelId(Integer levelId) {
-        Level level = levelRepository.findById(levelId)
-                .orElseThrow(() -> new EntityNotFoundException("Level not found with id: " + levelId));
-        return repository.findByLevel(level);
+        // Verify level exists
+        if (!levelRepository.existsById(levelId)) {
+            throw new EntityNotFoundException("Level not found with id: " + levelId);
+        }
+        // Use the JPQL query method
+        return repository.findByLevelId(levelId);
     }
 
     @Transactional

@@ -2,13 +2,17 @@ package com.example.FunEnglishServer.service;
 
 import com.example.FunEnglishServer.model.Question;
 import com.example.FunEnglishServer.model.UserProgress;
+import com.example.FunEnglishServer.model.UserProgressId;
+import com.example.FunEnglishServer.model.Test;
+import com.example.FunEnglishServer.model.User;
 import com.example.FunEnglishServer.repository.UserProgressRepository;
 import com.example.FunEnglishServer.repository.UserRepository;
+import com.example.FunEnglishServer.repository.TestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityNotFoundException;
-
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
@@ -16,6 +20,7 @@ import java.util.List;
 public class UserProgressService {
     private final UserProgressRepository repository;
     private final UserRepository userRepository;
+    private final TestRepository testRepository;
 
     @Transactional(readOnly = true)
     public List<UserProgress> getAll() {
@@ -33,5 +38,28 @@ public class UserProgressService {
     @Transactional
     public UserProgress saveProgress(UserProgress progress) {
         return repository.save(progress);
+    }
+
+    @Transactional
+    public void initializeUserProgress(Long userId) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + userId));
+        
+        List<Test> allTests = testRepository.findAll();
+        
+        for (Test test : allTests) {
+            UserProgressId progressId = new UserProgressId();
+            progressId.setUser_id(userId);
+            progressId.setTest_id(test.getTest_id());
+            
+            UserProgress progress = new UserProgress();
+            progress.setId(progressId);
+            progress.setUser(user);
+            progress.setTest(test);
+            progress.setScore(0L);
+            progress.setPassedAt(ZonedDateTime.now());
+            
+            repository.save(progress);
+        }
     }
 }

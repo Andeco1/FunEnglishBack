@@ -1,4 +1,3 @@
-
 package com.example.FunEnglishServer.service;
 
 import com.example.FunEnglishServer.model.User;
@@ -24,6 +23,7 @@ public class UserService implements UserDetailsService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
+    private final UserProgressService userProgressService;
 
     @Transactional(readOnly = true)
     public List<User> getAll(){
@@ -68,7 +68,11 @@ public class UserService implements UserDetailsService {
             resp.put("message", "User not found.");
             log.info(password+ passwordEncoder.encode(password));
             password = passwordEncoder.encode(password);
-            repository.save(new User(username,password));
+            User user = new User(username, password);
+            User savedUser = repository.save(user);
+            
+            // Initialize progress for all tests
+            userProgressService.initializeUserProgress(savedUser.getId());
         }else{
             resp.put("success",false);
             resp.put("message","User already exists");
