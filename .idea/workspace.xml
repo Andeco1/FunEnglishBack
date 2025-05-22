@@ -6,14 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a952b11f-6299-4621-8858-b0dbeddfe6fe" name="Changes" comment="jj">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/UserProgressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/UserProgressController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/UserProgress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/UserProgress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/repository/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/repository/TestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/TestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/UserProgressId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/model/UserProgressId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/repository/UserProgressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/repository/UserProgressRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/UserProgressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/UserProgressService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
