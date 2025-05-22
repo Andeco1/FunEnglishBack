@@ -1,5 +1,6 @@
 package com.example.FunEnglishServer.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,8 @@ public class Lesson {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private String level;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "level_id", nullable = false)
+    private Level level;
 }
