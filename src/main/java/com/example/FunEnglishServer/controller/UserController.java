@@ -68,7 +68,7 @@ public class UserController {
         try {
             return ResponseEntity.ok(service.register(login, password));
         } catch (Exception e) {
-            log.error("Registration failed for user: {}", login, e);
+
             return ResponseEntity.badRequest().body(Map.of(
                 "error", e.getMessage(),
                 "status", "error"

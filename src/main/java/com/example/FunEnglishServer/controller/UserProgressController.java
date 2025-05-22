@@ -1,5 +1,6 @@
 package com.example.FunEnglishServer.controller;
 
+import com.example.FunEnglishServer.dto.UserProgressResponseDTO;
 import com.example.FunEnglishServer.model.UserProgress;
 import com.example.FunEnglishServer.service.UserProgressService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class UserProgressController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<UserProgress>> getByUserId(@PathVariable Long userId) {
-        return ResponseEntity.ok(service.getByUserId(userId));
+    public ResponseEntity<List<UserProgressResponseDTO>> getUserProgress(@PathVariable Long userId) {
+        return ResponseEntity.ok(service.getUserProgress(userId));
     }
 
     @PostMapping

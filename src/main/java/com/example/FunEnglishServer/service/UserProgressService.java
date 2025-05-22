@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityNotFoundException;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+import com.example.FunEnglishServer.dto.UserProgressResponseDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -61,5 +63,17 @@ public class UserProgressService {
             
             repository.save(progress);
         }
+    }
+
+    public List<UserProgressResponseDTO> getUserProgress(Long userId) {
+        return repository.findByUserId(userId).stream()
+                .map(progress -> new UserProgressResponseDTO(
+                    progress.getTestId(),
+                    progress.getTest().getTitle(),
+                    progress.getTest().getLevel().getCode(),
+                    progress.getScore(),
+                    progress.getPassedAt()
+                ))
+                .collect(Collectors.toList());
     }
 }

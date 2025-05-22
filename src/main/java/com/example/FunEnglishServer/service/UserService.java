@@ -66,7 +66,7 @@ public class UserService implements UserDetailsService {
             ///register the user
             resp.put("success", true);
             resp.put("message", "User not found.");
-            log.info(password+ passwordEncoder.encode(password));
+
             password = passwordEncoder.encode(password);
             User user = new User(username, password);
             User savedUser = repository.save(user);

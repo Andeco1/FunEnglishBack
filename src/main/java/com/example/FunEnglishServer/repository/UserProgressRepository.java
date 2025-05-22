@@ -10,10 +10,6 @@ import java.util.List;
 
 @Repository
 public interface UserProgressRepository extends JpaRepository<UserProgress, UserProgressId> {
-    @Query("SELECT up FROM UserProgress up " +
-           "LEFT JOIN FETCH up.test t " +
-           "LEFT JOIN FETCH t.level " +
-           "WHERE up.id.user_id = :userId " +
-           "ORDER BY up.passedAt DESC")
+    @Query("SELECT up FROM UserProgress up WHERE up.id.user_id = :userId")
     List<UserProgress> findByUserId(@Param("userId") Long userId);
 }
