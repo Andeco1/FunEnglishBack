@@ -1,5 +1,7 @@
 package com.example.FunEnglishServer.config;
 
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -15,10 +17,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@Slf4j
 public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(){
@@ -35,20 +40,32 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-         http
-                .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // без сессий
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/login", "/api/users/register").permitAll()
-                        .requestMatchers("/api/**").authenticated())
-                .httpBasic(Customizer.withDefaults());
+        log.info("Configuring security filter chain");
+        http
+            .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -> {
+                log.info("Configuring authorization rules");
+                auth.requestMatchers("/api/users/login", "/api/users/register").permitAll()
+                    .requestMatchers("/api/**").authenticated();
+            })
+            .httpBasic(Customizer.withDefaults())
+            .authenticationProvider(authenticationProvider());
+
+        // Add logging filter
+        http.addFilterBefore((request, response, chain) -> {
+            HttpServletRequest httpRequest = (HttpServletRequest) request;
+            log.info("Processing request: {} {}", httpRequest.getMethod(), httpRequest.getRequestURI());
+            log.info("Authorization header: {}", httpRequest.getHeader("Authorization"));
+            chain.doFilter(request, response);
+        }, BasicAuthenticationFilter.class);
 
         return http.build();
     }
-    @Bean //Ставим степень кодировки, с которой кодировали пароль в базе
+
+    @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(5);
     }
-
 }

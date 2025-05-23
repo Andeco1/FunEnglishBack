@@ -1,5 +1,6 @@
 package com.example.FunEnglishServer.service;
 
+import com.example.FunEnglishServer.dto.QuestionOptionResponse;
 import com.example.FunEnglishServer.model.Question;
 import com.example.FunEnglishServer.model.QuestionOption;
 import com.example.FunEnglishServer.repository.QuestionOptionRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -46,4 +48,18 @@ public class QuestionOptionService {
         repository.deleteById(id);
     }
 
+    public List<QuestionOptionResponse> getAllQuestionOptions() {
+        return repository.findAll().stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
+
+    private QuestionOptionResponse mapToResponse(QuestionOption option) {
+        return new QuestionOptionResponse(
+                option.getOption_id(),
+                option.getQuestion().getQuestion_id(),
+                option.getOptionText(),
+                option.getIsCorrect()
+        );
+    }
 } 

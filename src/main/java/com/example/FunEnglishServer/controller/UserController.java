@@ -31,12 +31,19 @@ public class UserController {
         return ResponseEntity.ok(service.getByLogin(login));
     }
 
-    @PostMapping(value = "/login", consumes = "application/x-www-form-urlencoded", produces = "application/json")
+    @PostMapping(value = "/login", produces = "application/json")
     public ResponseEntity<Map<String, Object>> login(@RequestHeader("Authorization") String authorization) {
-        String[] credentials = extractCredentialsFromHeader(authorization);
-        String authLogin = credentials[0];
-        String authPassword = credentials[1];
-        return ResponseEntity.ok(service.login(authLogin, authPassword));
+        try {
+            String[] credentials = extractCredentialsFromHeader(authorization);
+            String authLogin = credentials[0];
+            String authPassword = credentials[1];
+            return ResponseEntity.ok(service.login(authLogin, authPassword));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "success", false,
+                "message", e.getMessage()
+            ));
+        }
     }
 
     @PostMapping(value = "/register", consumes = "application/json", produces = "application/json")

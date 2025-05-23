@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
+import com.example.FunEnglishServer.dto.QuestionOptionResponse;
 
 @RestController
 @RequestMapping("/api/question-options")
@@ -41,5 +42,9 @@ public class QuestionOptionController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @GetMapping
+    public ResponseEntity<List<QuestionOptionResponse>> getAllQuestionOptions() {
+        List<QuestionOptionResponse> options = service.getAllQuestionOptions();
+        return ResponseEntity.ok(options);
+    }
 } 
