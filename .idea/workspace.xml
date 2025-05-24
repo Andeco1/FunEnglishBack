@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a952b11f-6299-4621-8858-b0dbeddfe6fe" name="Changes" comment="jj">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/QuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/QuestionOptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/QuestionOptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/repository/QustionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/repository/QustionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/QuestionOptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/QuestionOptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FunEnglishServer/service/QuestionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
